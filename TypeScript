@@ -1,0 +1,46 @@
+interface MaintenanceSpec {
+  oilViscosity: string;
+  oilSpecification: string;
+  oilCapacityFilterLiters: number;
+  oilFilterPartNumber: string;
+  serviceIntervalKm: number;
+}
+
+interface MaintenanceReport {
+  recommendedViscosity: string;
+  oilSpec: string;
+  capacityWithFilter: number;
+  filterPartNo: string;
+  currentKm: number;
+  nextServiceKm: number;
+  remainingKm: number;
+  status: 'OK' | 'DUE_SOON' | 'OVERDUE';
+}
+
+function calculateMaintenanceStatus(
+  currentKm: number, 
+  spec: MaintenanceSpec
+): MaintenanceReport {
+  const interval = spec.serviceIntervalKm;
+  const completedCycles = Math.floor(currentKm / interval);
+  const nextServiceKm = (completedCycles + 1) * interval;
+  const remainingKm = nextServiceKm - currentKm;
+
+  let status: 'OK' | 'DUE_SOON' | 'OVERDUE' = 'OK';
+  if (remainingKm <= 0) {
+    status = 'OVERDUE';
+  } else if (remainingKm <= 1000) {
+    status = 'DUE_SOON';
+  }
+
+  return {
+    recommendedViscosity: spec.oilViscosity,
+    oilSpec: spec.oilSpecification,
+    capacityWithFilter: spec.oilCapacityFilterLiters,
+    filterPartNo: spec.oilFilterPartNumber,
+    currentKm,
+    nextServiceKm,
+    remainingKm,
+    status
+  };
+}

@@ -1,0 +1,53 @@
+-- Core Hierarchical Entities
+CREATE TABLE manufacturers (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    country_of_origin VARCHAR(50)
+);
+
+CREATE TABLE models (
+    id SERIAL PRIMARY KEY,
+    manufacturer_id INT REFERENCES manufacturers(id) ON DELETE CASCADE,
+    name VARCHAR(100) NOT NULL,
+    CONSTRAINT unique_model_per_mfr UNIQUE(manufacturer_id, name)
+);
+
+CREATE TABLE generations (
+    id SERIAL PRIMARY KEY,
+    model_id INT REFERENCES models(id) ON DELETE CASCADE,
+    name VARCHAR(100), -- e.g., "E90", "MK7"
+    start_year INT CHECK (start_year >= 1900),
+    end_year INT CHECK (end_year >= 1900)
+);
+
+-- Granular Vehicle Trims & Specs
+CREATE TABLE vehicle_configurations (
+    id BIGSERIAL PRIMARY KEY,
+    generation_id INT REFERENCES generations(id) ON DELETE CASCADE,
+    production_year INT NOT NULL,
+    body_style VARCHAR(50),
+    trim_level VARCHAR(100),
+    engine_displacement VARCHAR(20), -- e.g., "2.0L"
+    engine_code VARCHAR(50),        -- e.g., "N46B20"
+    fuel_type VARCHAR(30),          -- Gasoline, Diesel, EV, Hybrid
+    transmission VARCHAR(50),       -- e.g., "6-Speed Manual"
+    drivetrain VARCHAR(10),         -- FWD, RWD, AWD, 4WD
+    region VARCHAR(30)              -- USDM, EUDM, JDM
+);
+
+-- Maintenance & Oil Specifications
+CREATE TABLE maintenance_specs (
+    id SERIAL PRIMARY KEY,
+    config_id BIGINT UNIQUE REFERENCES vehicle_configurations(id) ON DELETE CASCADE,
+    oil_viscosity VARCHAR(20) NOT NULL,    -- e.g., "5W-30"
+    oil_specification VARCHAR(100),        -- e.g., "BMW Longlife-04"
+    oil_capacity_liters NUMERIC(4, 2),    -- Dry fill
+    oil_capacity_filter_liters NUMERIC(4, 2), -- With filter change
+    oil_filter_part_number VARCHAR(100),
+    service_interval_km INT NOT NULL DEFAULT 10000,
+    service_interval_months INT DEFAULT 12
+);
+
+-- Query Optimization Indexes
+CREATE INDEX idx_vehicle_search ON vehicle_configurations(production_year, fuel_type, drivetrain);
+CREATE INDEX idx_gen_lookup ON generations(model_id);

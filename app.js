@@ -1,342 +1,319 @@
 /**
- * DASH AHD — Global Vehicle Database Engine
- * Highly scalable multi-dimensional object structure.
+ * DASH AHD Engine & Normalized Global Database Engine (1900 - 2026+)
  */
 
-// Scalable Mock Database Structure
-const vehicleDatabase = {
-    "Toyota": {
-        "Camry": {
-            "XV70 (2018-Present)": {
-                "2021": {
-                    "Sedan": [
-                        {
-                            engine: "2.5L A25A-FXS I4 (Hybrid)",
-                            fuel: "Hybrid (Petrol/Electric)",
-                            transmission: "e-CVT",
-                            viscosity: "0W-20",
-                            spec: "API SP / ILSAC GF-6A",
-                            capacityWithFilter: "4.5 Liters",
-                            capacityNoFilter: "4.2 Liters",
-                            filterOEM: "OEM #04152-YZZA1",
-                            oilType: "Full Synthetic",
-                            intervalKm: 10000,
-                            intervalMonths: 6,
-                            notes: "Strictly use low-viscosity 0W-20 for optimal hybrid powertrain efficiency and VVT-iE operation."
-                        },
-                        {
-                            engine: "3.5L 2GR-FKS V6",
-                            fuel: "Petrol",
-                            transmission: "8-Speed Automatic",
-                            viscosity: "0W-20",
-                            spec: "API SN Plus / ILSAC GF-5",
-                            capacityWithFilter: "6.1 Liters",
-                            capacityNoFilter: "5.7 Liters",
-                            filterOEM: "OEM #04152-YZZA1",
-                            oilType: "Full Synthetic",
-                            intervalKm: 10000,
-                            intervalMonths: 6,
-                            notes: "Check oil level every 5,000 km under heavy driving conditions."
-                        }
-                    ]
-                }
-            }
+// Normalized Enterprise Data Architecture
+const db = {
+    manufacturers: {
+        "m_ford": {
+            name: "Ford",
+            country: "United States",
+            founded: 1903,
+            history: "Pioneer of mass vehicle production. Introducer of Model T in 1908.",
+            isVerified: true
         },
-        "Land Cruiser": {
-            "J300 (2022-Present)": {
-                "2023": {
-                    "SUV": [
-                        {
-                            engine: "3.4L V35A-FTS Twin-Turbo V6",
-                            fuel: "Petrol",
-                            transmission: "10-Speed Automatic",
-                            viscosity: "0W-20",
-                            spec: "API SP / ILSAC GF-6A",
-                            capacityWithFilter: "6.8 Liters",
-                            capacityNoFilter: "6.4 Liters",
-                            filterOEM: "OEM #04152-YZZA8",
-                            oilType: "Full Synthetic High Thermal Stability",
-                            intervalKm: 10000,
-                            intervalMonths: 6,
-                            notes: "Twin-turbocharged configuration requires premium synthetic oil to withstand severe thermal degradation."
-                        }
-                    ]
-                }
-            }
+        "m_toyota": {
+            name: "Toyota",
+            country: "Japan",
+            founded: 1937,
+            history: "Global automotive manufacturer renowned for reliability and early production hybrid systems.",
+            isVerified: true
         }
     },
-    "BMW": {
-        "M3": {
-            "G80 (2021-Present)": {
-                "2022": {
-                    "Sedan": [
-                        {
-                            engine: "3.0L S58 Twin-Turbo I6",
-                            fuel: "Petrol",
-                            transmission: "8-Speed M Steptronic",
-                            viscosity: "0W-30",
-                            spec: "BMW Longlife-12 FE / LL-01 FE",
-                            capacityWithFilter: "7.0 Liters",
-                            capacityNoFilter: "6.5 Liters",
-                            filterOEM: "OEM #11427852163",
-                            oilType: "M Performance Synthetic",
-                            intervalKm: 10000,
-                            intervalMonths: 12,
-                            notes: "High-performance S58 engine requires strict adherence to BMW Longlife specs to maintain turbo bearings warranty."
-                        }
-                    ]
-                }
-            }
-        }
+    models: {
+        "mod_ford_modelt": { manufacturerId: "m_ford", name: "Model T" },
+        "mod_toyota_camry": { manufacturerId: "m_toyota", name: "Camry" }
     },
-    "Mercedes-Benz": {
-        "G-Class": {
-            "W463 (2018-Present)": {
-                "2022": {
-                    "SUV": [
-                        {
-                            engine: "4.0L M177 Twin-Turbo V8 (AMG G63)",
-                            fuel: "Petrol",
-                            transmission: "9-Speed AMG SPEEDSHIFT",
-                            viscosity: "0W-40",
-                            spec: "MB 229.5 / MB 229.52",
-                            capacityWithFilter: "9.5 Liters",
-                            capacityNoFilter: "9.0 Liters",
-                            filterOEM: "OEM #2781800009",
-                            oilType: "Full Synthetic Competition Grade",
-                            intervalKm: 10000,
-                            intervalMonths: 12,
-                            notes: "Requires MB 229.5 approved full synthetic oil for high-torque high-temperature stability."
-                        }
-                    ]
-                }
-            }
-        }
+    generations: {
+        "gen_modelt_orig": { modelId: "mod_ford_modelt", name: "Original Series (1908-1927)" },
+        "gen_camry_xv70": { modelId: "mod_toyota_camry", name: "XV70 (2018-Present)" }
     },
-    "Porsche": {
-        "911": {
-            "992 (2019-Present)": {
-                "2023": {
-                    "Coupe": [
-                        {
-                            engine: "3.0L Twin-Turbo Flat-6 (Carrera S)",
-                            fuel: "Petrol",
-                            transmission: "8-Speed PDK",
-                            viscosity: "0W-40",
-                            spec: "Porsche C40",
-                            capacityWithFilter: "8.3 Liters",
-                            capacityNoFilter: "7.8 Liters",
-                            filterOEM: "OEM #9A719840500",
-                            oilType: "Full Synthetic Porsche Approved C40",
-                            intervalKm: 15000,
-                            intervalMonths: 12,
-                            notes: "CRITICAL: Do NOT use A40 specification. Porsche 992 requires C40 specification for particulate filter protection."
-                        }
-                    ]
-                }
-            }
+    facelifts: {
+        "fl_modelt_none": { generationId: "gen_modelt_orig", name: "Standard Model T Specification" },
+        "fl_camry_2021": { generationId: "gen_camry_xv70", name: "2021 Mid-Cycle Refresh" }
+    },
+    years: {
+        "yr_1915": { faceliftId: "fl_modelt_none", year: 1915 },
+        "yr_2021": { faceliftId: "fl_camry_2021", year: 2021 }
+    },
+    markets: {
+        "mkt_1915_us": { yearId: "yr_1915", region: "North America" },
+        "mkt_2021_gcc": { yearId: "yr_2021", region: "GCC / Global" }
+    },
+    bodies: {
+        "bdy_1915_touring": { marketId: "mkt_1915_us", style: "Touring / Roadster" },
+        "bdy_2021_sedan": { marketId: "mkt_2021_gcc", style: "Sedan" }
+    },
+    trims: {
+        "trm_1915_std": { bodyId: "bdy_1915_touring", trim: "Base Model T" },
+        "trm_2021_gle": { bodyId: "bdy_2021_sedan", trim: "GLE Hybrid" }
+    },
+    engines: {
+        "eng_1915_29L": {
+            trimId: "trm_1915_std",
+            code: "Model T Flathead I4",
+            displacement: "2.9L (177 cu in)",
+            cylinders: 4,
+            aspiration: "Naturally Aspirated",
+            hp: 20,
+            torque: "112 Nm",
+            fuel: "Petrol / Ethanol",
+            transmission: "2-Speed Planetary Manual",
+            drivetrain: "RWD",
+            oilViscosity: "SAE 30 Monograde (Non-Detergent) / Heavy Mineral",
+            oilSpec: "Historical Monograde (No Modern API Equivalent)",
+            capacityWithFilter: "3.8 Liters (1 US Gallon)",
+            capacityNoFilter: "3.8 Liters (No External Filter)",
+            filterOEM: "N/A (Splash & Funnel System)",
+            intervalKm: 1500,
+            intervalMonths: 3,
+            notes: "HISTORICAL VEHICLE: Requires non-detergent engine oil or modern vintage-blended SAE 30. Modern detergent synthetic oils can loosen historical engine sludge.",
+            dataSource: "Ford Historical Heritage Archives",
+            isHistorical: true,
+            isVerified: true
+        },
+        "eng_2021_25L_hyb": {
+            trimId: "trm_2021_gle",
+            code: "A25A-FXS",
+            displacement: "2.5L",
+            cylinders: 4,
+            aspiration: "Naturally Aspirated (Hybrid Electric Synergy)",
+            hp: 208,
+            torque: "221 Nm",
+            fuel: "Hybrid (Petrol)",
+            transmission: "e-CVT",
+            drivetrain: "FWD",
+            oilViscosity: "0W-20",
+            oilSpec: "API SP / ILSAC GF-6A",
+            capacityWithFilter: "4.5 Liters",
+            capacityNoFilter: "4.2 Liters",
+            filterOEM: "OEM #04152-YZZA1",
+            intervalKm: 10000,
+            intervalMonths: 6,
+            notes: "Use low-viscosity synthetic 0W-20 to maintain high fuel efficiency and fast lubrication during frequent engine stop/start cycles.",
+            dataSource: "Manufacturer Technical Service Bulletin 2021",
+            isHistorical: false,
+            isVerified: true
         }
     }
 };
 
-// Global State
-let activeSelection = null;
-let savedGarage = JSON.parse(localStorage.getItem('dash_ahd_garage')) || [];
+// Application Global State
+let selectedEngineRecord = null;
+let savedGarage = JSON.parse(localStorage.getItem('dash_ahd_garage_historical')) || [];
 
-// DOM Elements
+// Cascading Engine Elements
 const selectMake = document.getElementById('select-make');
 const selectModel = document.getElementById('select-model');
+const selectGen = document.getElementById('select-generation');
+const selectFace = document.getElementById('select-facelift');
 const selectYear = document.getElementById('select-year');
-const selectGeneration = document.getElementById('select-generation');
+const selectMkt = document.getElementById('select-market');
 const selectBody = document.getElementById('select-body');
-const selectEngine = document.getElementById('select-engine');
+const selectTrim = document.getElementById('select-trim');
+const selectEng = document.getElementById('select-engine');
 const selectFuel = document.getElementById('select-fuel');
+const selectTrans = document.getElementById('select-transmission');
+const selectDrive = document.getElementById('select-drivetrain');
 
-const globalSearch = document.getElementById('global-search');
-const loader = document.getElementById('loader');
 const resultsDashboard = document.getElementById('results-dashboard');
+const loader = document.getElementById('loader');
 
-// Init Platform
 document.addEventListener('DOMContentLoaded', () => {
-    populateMakes();
+    initCascade();
     setupEventListeners();
     renderGarage();
 });
 
-// Cascading Engine Functions
-function populateMakes() {
-    selectMake.innerHTML = '<option value="">-- اختر الشركة --</option>';
-    Object.keys(vehicleDatabase).sort().forEach(make => {
+function initCascade() {
+    selectMake.innerHTML = '<option value="">-- اختر المصنع --</option>';
+    Object.keys(db.manufacturers).forEach(mId => {
         const option = document.createElement('option');
-        option.value = make;
-        option.textContent = make;
+        option.value = mId;
+        option.textContent = `${db.manufacturers[mId].name} (${db.manufacturers[mId].country})`;
         selectMake.appendChild(option);
     });
 }
 
 function setupEventListeners() {
+    // Cascading Listeners
     selectMake.addEventListener('change', (e) => {
-        resetDropdowns(1);
-        const make = e.target.value;
-        if (!make) return;
+        resetCascades(1);
+        const mId = e.target.value;
+        if (!mId) return;
 
         selectModel.innerHTML = '<option value="">-- اختر الموديل --</option>';
-        Object.keys(vehicleDatabase[make]).sort().forEach(model => {
-            const option = document.createElement('option');
-            option.value = model;
-            option.textContent = model;
-            selectModel.appendChild(option);
+        Object.keys(db.models).forEach(modId => {
+            if (db.models[modId].manufacturerId === mId) {
+                const opt = document.createElement('option');
+                opt.value = modId;
+                opt.textContent = db.models[modId].name;
+                selectModel.appendChild(opt);
+            }
         });
         selectModel.disabled = false;
     });
 
     selectModel.addEventListener('change', (e) => {
-        resetDropdowns(2);
-        const make = selectMake.value;
-        const model = e.target.value;
-        if (!model) return;
+        resetCascades(2);
+        const modId = e.target.value;
+        if (!modId) return;
+
+        selectGen.innerHTML = '<option value="">-- اختر الجيل --</option>';
+        Object.keys(db.generations).forEach(gId => {
+            if (db.generations[gId].modelId === modId) {
+                const opt = document.createElement('option');
+                opt.value = gId;
+                opt.textContent = db.generations[gId].name;
+                selectGen.appendChild(opt);
+            }
+        });
+        selectGen.disabled = false;
+    });
+
+    selectGen.addEventListener('change', (e) => {
+        resetCascades(3);
+        const gId = e.target.value;
+        if (!gId) return;
+
+        selectFace.innerHTML = '<option value="">-- اختر التحديث --</option>';
+        Object.keys(db.facelifts).forEach(fId => {
+            if (db.facelifts[fId].generationId === gId) {
+                const opt = document.createElement('option');
+                opt.value = fId;
+                opt.textContent = db.facelifts[fId].name;
+                selectFace.appendChild(opt);
+            }
+        });
+        selectFace.disabled = false;
+    });
+
+    selectFace.addEventListener('change', (e) => {
+        resetCascades(4);
+        const fId = e.target.value;
+        if (!fId) return;
 
         selectYear.innerHTML = '<option value="">-- اختر السنة --</option>';
-        const generations = vehicleDatabase[make][model];
-        
-        let availableYears = new Set();
-        Object.keys(generations).forEach(gen => {
-            Object.keys(generations[gen]).forEach(year => availableYears.add(year));
-        });
-
-        Array.from(availableYears).sort().reverse().forEach(year => {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            selectYear.appendChild(option);
+        Object.keys(db.years).forEach(yId => {
+            if (db.years[yId].faceliftId === fId) {
+                const opt = document.createElement('option');
+                opt.value = yId;
+                opt.textContent = db.years[yId].year;
+                selectYear.appendChild(opt);
+            }
         });
         selectYear.disabled = false;
     });
 
     selectYear.addEventListener('change', (e) => {
-        resetDropdowns(3);
-        const make = selectMake.value;
-        const model = selectModel.value;
-        const year = e.target.value;
-        if (!year) return;
+        resetCascades(5);
+        const yId = e.target.value;
+        if (!yId) return;
 
-        selectGeneration.innerHTML = '<option value="">-- اختر الجيل --</option>';
-        const generations = vehicleDatabase[make][model];
-
-        Object.keys(generations).forEach(gen => {
-            if (generations[gen][year]) {
-                const option = document.createElement('option');
-                option.value = gen;
-                option.textContent = gen;
-                selectGeneration.appendChild(option);
+        selectMkt.innerHTML = '<option value="">-- اختر السوق --</option>';
+        Object.keys(db.markets).forEach(mkId => {
+            if (db.markets[mkId].yearId === yId) {
+                const opt = document.createElement('option');
+                opt.value = mkId;
+                opt.textContent = db.markets[mkId].region;
+                selectMkt.appendChild(opt);
             }
         });
-        selectGeneration.disabled = false;
+        selectMkt.disabled = false;
     });
 
-    selectGeneration.addEventListener('change', (e) => {
-        resetDropdowns(4);
-        const make = selectMake.value;
-        const model = selectModel.value;
-        const year = selectYear.value;
-        const gen = e.target.value;
-        if (!gen) return;
+    selectMkt.addEventListener('change', (e) => {
+        resetCascades(6);
+        const mkId = e.target.value;
+        if (!mkId) return;
 
         selectBody.innerHTML = '<option value="">-- اختر الهيكل --</option>';
-        const bodies = vehicleDatabase[make][model][gen][year];
-
-        Object.keys(bodies).forEach(body => {
-            const option = document.createElement('option');
-            option.value = body;
-            option.textContent = body;
-            selectBody.appendChild(option);
+        Object.keys(db.bodies).forEach(bId => {
+            if (db.bodies[bId].marketId === mkId) {
+                const opt = document.createElement('option');
+                opt.value = bId;
+                opt.textContent = db.bodies[bId].style;
+                selectBody.appendChild(opt);
+            }
         });
         selectBody.disabled = false;
     });
 
     selectBody.addEventListener('change', (e) => {
-        resetDropdowns(5);
-        const make = selectMake.value;
-        const model = selectModel.value;
-        const year = selectYear.value;
-        const gen = selectGeneration.value;
-        const body = e.target.value;
-        if (!body) return;
+        resetCascades(7);
+        const bId = e.target.value;
+        if (!bId) return;
 
-        selectEngine.innerHTML = '<option value="">-- اختر المحرك --</option>';
-        const engines = vehicleDatabase[make][model][gen][year][body];
-
-        engines.forEach((item, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = item.engine;
-            selectEngine.appendChild(option);
+        selectTrim.innerHTML = '<option value="">-- اختر الفئة --</option>';
+        Object.keys(db.trims).forEach(tId => {
+            if (db.trims[tId].bodyId === bId) {
+                const opt = document.createElement('option');
+                opt.value = tId;
+                opt.textContent = db.trims[tId].trim;
+                selectTrim.appendChild(opt);
+            }
         });
-        selectEngine.disabled = false;
+        selectTrim.disabled = false;
     });
 
-    selectEngine.addEventListener('change', (e) => {
-        resetDropdowns(6);
-        const make = selectMake.value;
-        const model = selectModel.value;
-        const year = selectYear.value;
-        const gen = selectGeneration.value;
-        const body = selectBody.value;
-        const engineIdx = e.target.value;
-        if (engineIdx === "") return;
+    selectTrim.addEventListener('change', (e) => {
+        resetCascades(8);
+        const tId = e.target.value;
+        if (!tId) return;
 
-        const targetVehicle = vehicleDatabase[make][model][gen][year][body][engineIdx];
-
-        selectFuel.innerHTML = `<option value="${targetVehicle.fuel}">${targetVehicle.fuel}</option>`;
-        selectFuel.disabled = false;
-
-        // Trigger Full Output Display
-        displayVehicleData(make, model, year, gen, body, targetVehicle);
+        selectEng.innerHTML = '<option value="">-- اختر المحرك --</option>';
+        Object.keys(db.engines).forEach(eId => {
+            if (db.engines[eId].trimId === tId) {
+                const opt = document.createElement('option');
+                opt.value = eId;
+                opt.textContent = `${db.engines[eId].code} (${db.engines[eId].displacement})`;
+                selectEng.appendChild(opt);
+            }
+        });
+        selectEng.disabled = false;
     });
 
-    // Instant Direct Global Keyword Search Mock
-    globalSearch.addEventListener('input', (e) => {
+    selectEng.addEventListener('change', (e) => {
+        const eId = e.target.value;
+        if (!eId) return;
+
+        const eng = db.engines[eId];
+        selectedEngineRecord = eng;
+
+        selectFuel.innerHTML = `<option>${eng.fuel}</option>`; selectFuel.disabled = false;
+        selectTrans.innerHTML = `<option>${eng.transmission}</option>`; selectTrans.disabled = false;
+        selectDrive.innerHTML = `<option>${eng.drivetrain}</option>`; selectDrive.disabled = false;
+
+        renderResults(eng);
+    });
+
+    // Global Search Auto Complete Simulation
+    document.getElementById('global-search').addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
-        if (query.length < 3) return;
-
-        // Quick exact/partial match demo
-        if (query.includes('camry')) {
-            const data = vehicleDatabase["Toyota"]["Camry"]["XV70 (2018-Present)"]["2021"]["Sedan"][0];
-            displayVehicleData("Toyota", "Camry", "2021", "XV70 (2018-Present)", "Sedan", data);
-        } else if (query.includes('m3') || query.includes('bmw')) {
-            const data = vehicleDatabase["BMW"]["M3"]["G80 (2021-Present)"]["2022"]["Sedan"][0];
-            displayVehicleData("BMW", "M3", "2022", "G80 (2021-Present)", "Sedan", data);
-        } else if (query.includes('911') || query.includes('porsche')) {
-            const data = vehicleDatabase["Porsche"]["911"]["992 (2019-Present)"]["2023"]["Coupe"][0];
-            displayVehicleData("Porsche", "911", "2023", "992 (2019-Present)", "Coupe", data);
+        if (query.includes('model t') || query.includes('1915') || query.includes('ford')) {
+            renderResults(db.engines["eng_1915_29L"]);
+        } else if (query.includes('camry') || query.includes('xv70') || query.includes('2021')) {
+            renderResults(db.engines["eng_2021_25L_hyb"]);
         }
     });
 
-    // Mileage Calculation Action
-    document.getElementById('btn-calculate-status').addEventListener('click', calculateMileageStatus);
-
-    // Garage LocalStorage Actions
-    document.getElementById('btn-save-to-garage').addEventListener('click', saveCurrentToGarage);
-
-    // WhatsApp Direct Action
-    document.getElementById('btn-share-whatsapp').addEventListener('click', sendWhatsAppDetails);
-    document.getElementById('whatsapp-direct-btn').addEventListener('click', () => {
-        window.open('https://wa.me/?text=' + encodeURIComponent('مرحباً منصة DASH AHD، أحتاج إلى استفسار بخصوص صيانة سيارتي.'), '_blank');
-    });
+    // Calculator Listener
+    document.getElementById('btn-calculate-status').addEventListener('click', calculateStatus);
+    document.getElementById('btn-save-to-garage').addEventListener('click', saveToGarage);
+    document.getElementById('btn-import-json').addEventListener('click', importAdminData);
+    document.getElementById('btn-share-whatsapp').addEventListener('click', sendWhatsApp);
 }
 
-function resetDropdowns(level) {
-    if (level <= 1) { selectModel.innerHTML = '<option value="">-- اختر الموديل --</option>'; selectModel.disabled = true; }
-    if (level <= 2) { selectYear.innerHTML = '<option value="">-- اختر السنة --</option>'; selectYear.disabled = true; }
-    if (level <= 3) { selectGeneration.innerHTML = '<option value="">-- اختر الجيل --</option>'; selectGeneration.disabled = true; }
-    if (level <= 4) { selectBody.innerHTML = '<option value="">-- اختر الهيكل --</option>'; selectBody.disabled = true; }
-    if (level <= 5) { selectEngine.innerHTML = '<option value="">-- اختر المحرك --</option>'; selectEngine.disabled = true; }
-    if (level <= 6) { selectFuel.innerHTML = '<option value="">-- اختر نوع الوقود --</option>'; selectFuel.disabled = true; }
+function resetCascades(level) {
+    const list = [selectModel, selectGen, selectFace, selectYear, selectMkt, selectBody, selectTrim, selectEng, selectFuel, selectTrans, selectDrive];
+    for (let i = level - 1; i < list.length; i++) {
+        list[i].innerHTML = `<option value="">-- --</option>`;
+        list[i].disabled = true;
+    }
     resultsDashboard.classList.add('hidden');
 }
 
-// Display Data in Dashboard UI
-function displayVehicleData(make, model, year, gen, body, data) {
+function renderResults(eng) {
     loader.classList.remove('hidden');
     resultsDashboard.classList.add('hidden');
 
@@ -344,150 +321,106 @@ function displayVehicleData(make, model, year, gen, body, data) {
         loader.classList.add('hidden');
         resultsDashboard.classList.remove('hidden');
 
-        activeSelection = { make, model, year, gen, body, ...data };
+        // Historical vs Modern Output Display Logic
+        const historyPanel = document.getElementById('historical-info-panel');
+        if (eng.isHistorical) {
+            historyPanel.classList.remove('hidden');
+            document.getElementById('res-manufacturer-history').textContent = db.manufacturers["m_ford"].history;
+        } else {
+            historyPanel.classList.add('hidden');
+        }
 
-        document.getElementById('res-vehicle-title').textContent = `${make} ${model} ${data.engine} (${year})`;
-        document.getElementById('res-vehicle-specs-tag').textContent = `${gen} | ${body} | ناقل الحركة: ${data.transmission}`;
+        document.getElementById('res-vehicle-title').textContent = `${eng.code} - ${eng.displacement}`;
+        document.getElementById('res-oil-viscosity').textContent = eng.oilViscosity || "Specification not verified";
+        document.getElementById('res-oil-spec').textContent = eng.oilSpec || "Specification not verified";
+        document.getElementById('res-oil-capacity').textContent = eng.capacityWithFilter || "Reliable specification not available";
+        document.getElementById('res-oil-capacity-nofilter').textContent = eng.capacityNoFilter || "Reliable specification not available";
+        document.getElementById('res-oil-filter').textContent = eng.filterOEM || "N/A";
+        document.getElementById('res-data-source').textContent = eng.dataSource || "Internal Automotive Database";
 
-        document.getElementById('res-oil-viscosity').textContent = data.viscosity;
-        document.getElementById('res-oil-spec').textContent = data.spec;
-        document.getElementById('res-oil-capacity').textContent = data.capacityWithFilter;
-        document.getElementById('res-oil-capacity-nofilter').textContent = data.capacityNoFilter;
-        document.getElementById('res-oil-filter').textContent = data.filterOEM;
-        document.getElementById('res-oil-type').textContent = data.oilType;
+        document.getElementById('res-engine-code').textContent = eng.code;
+        document.getElementById('res-engine-disp').textContent = `${eng.displacement} (${eng.cylinders} Cylinders)`;
+        document.getElementById('res-engine-aspiration').textContent = eng.aspiration;
+        document.getElementById('res-engine-power').textContent = `${eng.hp} HP / ${eng.torque}`;
+        document.getElementById('res-drivetrain-trans').textContent = `${eng.drivetrain} | ${eng.transmission}`;
+        document.getElementById('res-interval-text').textContent = `${eng.intervalKm.toLocaleString()} KM / ${eng.intervalMonths} Months`;
 
-        document.getElementById('res-interval-km').textContent = `${data.intervalKm.toLocaleString()} كم`;
-        document.getElementById('res-interval-months').textContent = `${data.intervalMonths} أشهر`;
-        document.getElementById('res-notes').textContent = data.notes;
+        document.getElementById('res-notes').textContent = eng.notes;
 
-        // Reset Calculator Panel
-        document.getElementById('calc-results-display').classList.add('hidden');
-        document.getElementById('input-current-km').value = '';
-        document.getElementById('input-last-service-km').value = '';
-
-        // Smooth Scroll to Results
         resultsDashboard.scrollIntoView({ behavior: 'smooth' });
-    }, 400);
+    }, 300);
 }
 
-// Mileage & Service Logic Engine
-function calculateMileageStatus() {
-    if (!activeSelection) return;
+function calculateStatus() {
+    if (!selectedEngineRecord) return;
+    const current = parseInt(document.getElementById('input-current-km').value);
+    const last = parseInt(document.getElementById('input-last-service-km').value);
 
-    const currentKm = parseInt(document.getElementById('input-current-km').value);
-    const lastServiceKm = parseInt(document.getElementById('input-last-service-km').value);
-
-    if (isNaN(currentKm) || isNaN(lastServiceKm) || currentKm < lastServiceKm) {
-        alert('يرجى إدخال قراءات عداد صحيحة ومطابقة للواقع (العداد الحالي يجب أن يكون أكبر من عداد آخر تغيير).');
+    if (isNaN(current) || isNaN(last) || current < last) {
+        alert('يرجى إدخال قراءة عداد صحيحة');
         return;
     }
 
-    const interval = activeSelection.intervalKm;
-    const driven = currentKm - lastServiceKm;
+    const interval = selectedEngineRecord.intervalKm;
+    const driven = current - last;
     const remaining = interval - driven;
-    const nextService = lastServiceKm + interval;
+    const nextService = last + interval;
 
-    const displayContainer = document.getElementById('calc-results-display');
-    const statusBadge = document.getElementById('status-badge');
-    const statusText = document.getElementById('status-text');
-
+    document.getElementById('calc-results-display').classList.remove('hidden');
     document.getElementById('metric-driven').textContent = `${driven.toLocaleString()} KM`;
     document.getElementById('metric-remaining').textContent = `${remaining.toLocaleString()} KM`;
     document.getElementById('metric-next').textContent = `${nextService.toLocaleString()} KM`;
 
-    statusBadge.className = 'status-indicator';
+    const badge = document.getElementById('status-badge');
+    const text = document.getElementById('status-text');
 
     if (remaining <= 0) {
-        statusBadge.classList.add('status-alert');
-        statusText.textContent = 'تغيير الزيت مستحق فوراً! (تجاوزت المسافة الموصى بها)';
-    } else if (remaining <= 1500) {
-        statusBadge.classList.add('status-warning');
-        statusText.textContent = 'اقترب موعد التغيير (اقتربت من نهاية مسافة الزيت)';
+        badge.className = 'status-indicator status-alert';
+        text.textContent = 'خدمة التغيير مستحقة الآن!';
     } else {
-        statusBadge.classList.add('status-ok');
-        statusText.textContent = 'حالة الزيت ممتازة وآمنة';
+        badge.className = 'status-indicator status-ok';
+        text.textContent = 'حالة الزيت ممتازة';
     }
-
-    displayContainer.classList.remove('hidden');
 }
 
-// LocalStorage Garage Handling
-function saveCurrentToGarage() {
-    if (!activeSelection) return;
-
-    const exists = savedGarage.some(item => 
-        item.make === activeSelection.make && 
-        item.model === activeSelection.model && 
-        item.year === activeSelection.year &&
-        item.engine === activeSelection.engine
-    );
-
-    if (exists) {
-        alert('هذه السيارة موجودة بالفعل في كراجك المحفوظ!');
-        return;
-    }
-
-    savedGarage.push({
-        id: Date.now(),
-        ...activeSelection,
-        savedDate: new Date().toLocaleDateString('ar-EG')
-    });
-
-    localStorage.setItem('dash_ahd_garage', JSON.stringify(savedGarage));
+function saveToGarage() {
+    if (!selectedEngineRecord) return;
+    savedGarage.push({ id: Date.now(), eng: selectedEngineRecord });
+    localStorage.setItem('dash_ahd_garage_historical', JSON.stringify(savedGarage));
     renderGarage();
-    alert('تمت إضافة السيارة بنجاح إلى كراجك الخاص!');
+    alert('تم الحفظ في كراجك الخاص');
 }
 
 function renderGarage() {
-    const garageList = document.getElementById('garage-list');
-    const emptyState = document.getElementById('garage-empty-state');
-
-    garageList.innerHTML = '';
-
-    if (savedGarage.length === 0) {
-        emptyState.classList.remove('hidden');
-        return;
-    }
-
-    emptyState.classList.add('hidden');
+    const list = document.getElementById('garage-list');
+    const empty = document.getElementById('garage-empty-state');
+    list.innerHTML = '';
+    if (savedGarage.length === 0) { empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
 
     savedGarage.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'garage-item-card';
-        card.innerHTML = `
-            <div class="garage-item-header">
-                <h4>${item.make} ${item.model} (${item.year})</h4>
-                <button class="btn-delete" onclick="removeFromGarage(${item.id})"><i class="fa-solid fa-trash"></i></button>
-            </div>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">${item.engine}</p>
-            <div style="font-size:0.85rem;">
-                <div><strong>اللزوجة:</strong> <span style="color:var(--primary-gold);">${item.viscosity}</span></div>
-                <div><strong>السعة:</strong> ${item.capacityWithFilter}</div>
-            </div>
-        `;
-        garageList.appendChild(card);
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<h4>${item.eng.code}</h4><p>${item.eng.oilViscosity} - ${item.eng.capacityWithFilter}</p>`;
+        list.appendChild(div);
     });
 }
 
-function removeFromGarage(id) {
-    savedGarage = savedGarage.filter(item => item.id !== id);
-    localStorage.setItem('dash_ahd_garage', JSON.stringify(savedGarage));
-    renderGarage();
+function importAdminData() {
+    const jsonStr = document.getElementById('json-import-input').value;
+    try {
+        const parsed = JSON.parse(jsonStr);
+        if (parsed.engines) {
+            Object.assign(db.engines, parsed.engines);
+            alert('تم استيراد بيانات المحركات وتحديث الأرشيف بنجاح!');
+        }
+    } catch (e) {
+        alert('خطأ في صيغة JSON المدخلة. يرجى التحقق من القواعد.');
+    }
 }
 
-// WhatsApp Dynamic Data Formatter
-function sendWhatsAppDetails() {
-    if (!activeSelection) return;
-
-    const text = `*بيانات صيانة السيارة عبر DASH AHD* 🚗\n\n` +
-                 `*السيارة:* ${activeSelection.make} ${activeSelection.model} (${activeSelection.year})\n` +
-                 `*المحرك:* ${activeSelection.engine}\n` +
-                 `*لزوجة الزيت:* ${activeSelection.viscosity}\n` +
-                 `*المواصفة المطلوب:* ${activeSelection.spec}\n` +
-                 `*سعة الزيت:* ${activeSelection.capacityWithFilter}\n` +
-                 `*فلتر الزيت:* ${activeSelection.filterOEM}\n\n` +
-                 `أحتاج إلى حجز موعد صيانة أو الاستفسار عن توفر الزيت والفلتر المناسبين.`;
-
-    const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/?text=${encodedText}`, '_blank');
+function sendWhatsApp() {
+    if (!selectedEngineRecord) return;
+    const msg = `DASH AHD Historical Report:\nEngine: ${selectedEngineRecord.code}\nViscosity: ${selectedEngineRecord.oilViscosity}\nCapacity: ${selectedEngineRecord.capacityWithFilter}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }

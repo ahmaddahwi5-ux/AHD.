@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASH AHD — المنصة العالمية لزيوت وصيانة السيارات</title>
+    <title>DASH AHD — Global Historical Car Database & Oil System</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,16 +16,16 @@
         <div class="container nav-container">
             <div class="brand">
                 <span class="brand-dash">DASH</span> <span class="brand-ahd">AHD</span>
-                <span class="brand-badge">GLOBAL</span>
+                <span class="brand-badge">HISTORICAL & GLOBAL</span>
             </div>
             <nav class="nav-links">
-                <a href="#selector" class="active"><i class="fa-solid fa-car-side"></i> اختيار السيارة</a>
+                <a href="#selector" class="active"><i class="fa-solid fa-car-side"></i> التحديد الدقيق</a>
                 <a href="#garage"><i class="fa-solid fa-warehouse"></i> كراجي</a>
-                <a href="#about"><i class="fa-solid fa-circle-info"></i> عن المنصة</a>
+                <a href="#admin"><i class="fa-solid fa-database"></i> لوحة الإدارة</a>
             </nav>
             <div class="nav-actions">
                 <button id="whatsapp-direct-btn" class="btn btn-whatsapp-nav">
-                    <i class="fa-brands fa-whatsapp"></i> خدمة العملاء
+                    <i class="fa-brands fa-whatsapp"></i> الدعم الدقيق
                 </button>
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <h1 class="hero-title">اعرف سيارتك... واعرف زيتك</h1>
-            <p class="hero-subtitle">اختر سيارتك واحصل على معلومات الزيت والصيانة المناسبة لها بدقة متناهية وفق المعايير العالمية.</p>
+            <p class="hero-subtitle">من السيارات الكلاسيكية (1900) إلى أحدث السيارات في العالم، اختر سيارتك واحصل على معلوماتها وصيانتها.</p>
             <div class="hero-cta">
                 <a href="#selector" class="btn btn-primary btn-lg"><i class="fa-solid fa-magnifying-glass"></i> CHECK YOUR CAR</a>
             </div>
@@ -46,84 +46,82 @@
 
         <section id="selector" class="card selection-card">
             <div class="card-header">
-                <h2><i class="fa-solid fa-sliders"></i> محرك البحث واختيار المركبة الدقيق</h2>
-                <p>حدد بيانات سيارتك للوصول إلى المواصفات الموصى بها من المصنع</p>
+                <h2><i class="fa-solid fa-sliders"></i> قاعدة بيانات المركبات التاريخية والعالمية</h2>
+                <p>تغطية كاملة للمواصفات من عام 1900 حتى أحدث الطرازات</p>
             </div>
 
             <div class="search-bar-wrapper">
                 <div class="search-input-group">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="global-search" placeholder="ابحث مباشرة (مثال: Toyota Camry 2021, BMW M3, Porsche 911)...">
+                    <input type="text" id="global-search" placeholder="ابحث بكود المحرك، الموديل، أو الماركة (مثال: Ford Model T, E90 320i, 2GR-FKS)...">
                 </div>
             </div>
 
-            <div class="divider"><span>أو اختر حسب التفاصيل</span></div>
+            <div class="divider"><span>التحديد التسلسلي الدقيق</span></div>
 
             <form id="vehicle-cascade-form" class="cascade-grid">
-                
                 <div class="form-group">
-                    <label for="select-make"><i class="fa-solid fa-industry"></i> الشركة المصنعة (Make)</label>
-                    <select id="select-make" class="form-control" required>
-                        <option value="">-- اختر الشركة --</option>
-                    </select>
+                    <label><i class="fa-solid fa-industry"></i> 1. المصنع / Brand</label>
+                    <select id="select-make" class="form-control"><option value="">-- اختر المصنع --</option></select>
                 </div>
-
                 <div class="form-group">
-                    <label for="select-model"><i class="fa-solid fa-car"></i> الموديل (Model)</label>
-                    <select id="select-model" class="form-control" disabled required>
-                        <option value="">-- اختر الموديل --</option>
-                    </select>
+                    <label><i class="fa-solid fa-car"></i> 2. الموديل / Model</label>
+                    <select id="select-model" class="form-control" disabled><option value="">-- اختر الموديل --</option></select>
                 </div>
-
                 <div class="form-group">
-                    <label for="select-year"><i class="fa-solid fa-calendar-days"></i> سنة الصنع (Year)</label>
-                    <select id="select-year" class="form-control" disabled required>
-                        <option value="">-- اختر السنة --</option>
-                    </select>
+                    <label><i class="fa-solid fa-code-branch"></i> 3. الجيل / Generation</label>
+                    <select id="select-generation" class="form-control" disabled><option value="">-- اختر الجيل --</option></select>
                 </div>
-
                 <div class="form-group">
-                    <label for="select-generation"><i class="fa-solid fa-code-branch"></i> الجيل (Generation)</label>
-                    <select id="select-generation" class="form-control" disabled required>
-                        <option value="">-- اختر الجيل --</option>
-                    </select>
+                    <label><i class="fa-solid fa-wand-magic-sparkles"></i> 4. الفيس ليفت / Facelift</label>
+                    <select id="select-facelift" class="form-control" disabled><option value="">-- اختر التحديث --</option></select>
                 </div>
-
                 <div class="form-group">
-                    <label for="select-body"><i class="fa-solid fa-car-rear"></i> نمط الهيكل (Body Style)</label>
-                    <select id="select-body" class="form-control" disabled required>
-                        <option value="">-- اختر الهيكل --</option>
-                    </select>
+                    <label><i class="fa-solid fa-calendar-days"></i> 5. سنة الصنع / Model Year</label>
+                    <select id="select-year" class="form-control" disabled><option value="">-- اختر السنة --</option></select>
                 </div>
-
                 <div class="form-group">
-                    <label for="select-engine"><i class="fa-solid fa-gears"></i> المحرك والسعة (Engine)</label>
-                    <select id="select-engine" class="form-control" disabled required>
-                        <option value="">-- اختر المحرك --</option>
-                    </select>
+                    <label><i class="fa-solid fa-globe"></i> 6. السوق والإقليم / Market</label>
+                    <select id="select-market" class="form-control" disabled><option value="">-- اختر السوق --</option></select>
                 </div>
-
                 <div class="form-group">
-                    <label for="select-fuel"><i class="fa-solid fa-gas-pump"></i> نوع الوقود (Fuel Type)</label>
-                    <select id="select-fuel" class="form-control" disabled required>
-                        <option value="">-- اختر نوع الوقود --</option>
-                    </select>
+                    <label><i class="fa-solid fa-car-rear"></i> 7. نمط الهيكل / Body Style</label>
+                    <select id="select-body" class="form-control" disabled><option value="">-- اختر الهيكل --</option></select>
                 </div>
-
+                <div class="form-group">
+                    <label><i class="fa-solid fa-tags"></i> 8. الفئة / Trim</label>
+                    <select id="select-trim" class="form-control" disabled><option value="">-- اختر الفئة --</option></select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-gears"></i> 9. المحرك والكود / Engine</label>
+                    <select id="select-engine" class="form-control" disabled><option value="">-- اختر المحرك --</option></select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-gas-pump"></i> 10. نوع الوقود / Fuel Type</label>
+                    <select id="select-fuel" class="form-control" disabled><option value="">-- اختر الوقود --</option></select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-route"></i> 11. ناقل الحركة / Transmission</label>
+                    <select id="select-transmission" class="form-control" disabled><option value="">-- اختر الناقل --</option></select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-dharmachakra"></i> 12. نظام الدفع / Drivetrain</label>
+                    <select id="select-drivetrain" class="form-control" disabled><option value="">-- اختر الدفع --</option></select>
+                </div>
             </form>
         </section>
 
         <div id="loader" class="loader-container hidden">
             <div class="spinner"></div>
-            <p>جاري استخراج مواصفات المصنع الدقيقة...</p>
+            <p>جاري مطابقة بيانات المحرك وسجلات المصنع...</p>
         </div>
 
         <section id="results-dashboard" class="results-wrapper hidden">
-            
             <div class="card dashboard-header-card">
                 <div class="vehicle-title-badge">
                     <h2 id="res-vehicle-title">Toyota Camry 2.5L Hybrid (2021)</h2>
-                    <span id="res-vehicle-specs-tag" class="specs-tag">XV70 | Sedan | FWD</span>
+                    <span id="res-vehicle-specs-tag" class="specs-tag">Global Spec</span>
+                    <span id="res-verification-badge" class="badge-verified">معدل مالي وموثق</span>
                 </div>
                 <div class="header-actions">
                     <button id="btn-save-to-garage" class="btn btn-outline"><i class="fa-solid fa-bookmark"></i> حفظ في كراجي</button>
@@ -131,99 +129,80 @@
                 </div>
             </div>
 
+            <div id="historical-info-panel" class="card history-card hidden">
+                <div class="spec-header">
+                    <i class="fa-solid fa-landmark icon-gold"></i>
+                    <h3>سجل تاريخ المصنع والمركبة</h3>
+                </div>
+                <p id="res-manufacturer-history" class="history-text"></p>
+            </div>
+
             <div class="dashboard-grid">
-                
                 <div class="card spec-card">
                     <div class="spec-header">
                         <i class="fa-solid fa-oil-can icon-gold"></i>
-                        <h3>مواصفات زيت المحرك</h3>
+                        <h3>مواصفات زيت المحرك exact</h3>
                     </div>
                     <div class="spec-content">
-                        <div class="spec-item">
-                            <span class="label">لزوجة الزيت الموصى بها:</span>
-                            <span id="res-oil-viscosity" class="value highlight-gold">0W-20</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="label">المواصفات والمعيار القياسي:</span>
-                            <span id="res-oil-spec" class="value">API SP / ILSAC GF-6A</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="label">سعة الزيت (مع فلتر/سيفون):</span>
-                            <span id="res-oil-capacity" class="value">4.5 لتر</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="label">سعة الزيت (بدون فلتر):</span>
-                            <span id="res-oil-capacity-nofilter" class="value">4.2 لتر</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="label">فلتر الزيت (السيفون):</span>
-                            <span id="res-oil-filter" class="value">OEM #04152-YZZA1</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="label">نوع الزيت الموصى به:</span>
-                            <span id="res-oil-type" class="value">تخليقي بالكامل (Full Synthetic)</span>
-                        </div>
+                        <div class="spec-item"><span class="label">لزوجة الزيت:</span><span id="res-oil-viscosity" class="value highlight-gold">--</span></div>
+                        <div class="spec-item"><span class="label">المواصفة المعيارية:</span><span id="res-oil-spec" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">السعة مع الفلتر:</span><span id="res-oil-capacity" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">السعة بدون فلتر:</span><span id="res-oil-capacity-nofilter" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">رقم الفلتر الموصى به:</span><span id="res-oil-filter" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">مصدر التوثيق:</span><span id="res-data-source" class="value">--</span></div>
                     </div>
                 </div>
 
                 <div class="card spec-card">
                     <div class="spec-header">
-                        <i class="fa-solid fa-clock-rotate-left icon-blue"></i>
-                        <h3>جدول الصيانة والتغيير</h3>
+                        <i class="fa-solid fa-microchip icon-blue"></i>
+                        <h3>المواصفات الفنية للمحرك</h3>
                     </div>
                     <div class="spec-content">
-                        <div class="spec-item">
-                            <span class="label">مسافة التغيير الموصى بها:</span>
-                            <span id="res-interval-km" class="value">10,000 كم</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="label">المدة الزمنية للتغيير:</span>
-                            <span id="res-interval-months" class="value">6 أشهر</span>
-                        </div>
-                        <div class="spec-item-block">
-                            <span class="label">ملاحظات واشتراطات خاصة:</span>
-                            <p id="res-notes" class="notes-text">يرجى التأكد من عدم زيادة منسوب الزيت عن علامة F في العصا. في ظروف القيادة الشاقة (الطقس الحار والجر)، يوصى بتقليل المسافة إلى 7,500 كم.</p>
-                        </div>
+                        <div class="spec-item"><span class="label">كود المحرك:</span><span id="res-engine-code" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">السعة والتكوين:</span><span id="res-engine-disp" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">الشاحن (Turbo/NA):</span><span id="res-engine-aspiration" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">القوة (HP / Torque):</span><span id="res-engine-power" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">نظام الدفع والناقل:</span><span id="res-drivetrain-trans" class="value">--</span></div>
+                        <div class="spec-item"><span class="label">فترة الصيانة القياسية:</span><span id="res-interval-text" class="value">--</span></div>
                     </div>
                 </div>
+            </div>
 
+            <div class="card spec-card margin-top-sub">
+                <div class="spec-header">
+                    <i class="fa-solid fa-clipboard-check icon-gold"></i>
+                    <h3>ملاحظات الصيانة والاشتراطات الخاصة</h3>
+                </div>
+                <p id="res-notes" class="notes-text"></p>
             </div>
 
             <div class="card calculator-card">
                 <div class="card-header">
-                    <h3><i class="fa-solid fa-calculator"></i> حاسبة الصيانة وقاطع المسافة (Mileage Calculator)</h3>
+                    <h3><i class="fa-solid fa-calculator"></i> حاسبة قاطع المسافة وتنبيهات الصيانة</h3>
                 </div>
                 <div class="calculator-grid">
                     <div class="calc-inputs">
                         <div class="form-group">
-                            <label for="input-current-km">قراءة العداد الحالية (KM):</label>
-                            <input type="number" id="input-current-km" class="form-control" placeholder="مثال: 85000">
+                            <label>قراءة العداد الحالية (KM):</label>
+                            <input type="number" id="input-current-km" class="form-control" placeholder="مثال: 145000">
                         </div>
                         <div class="form-group">
-                            <label for="input-last-service-km">قراءة العداد عند آخر تغيير (KM):</label>
-                            <input type="number" id="input-last-service-km" class="form-control" placeholder="مثال: 80000">
+                            <label>عداد آخر صيانة (KM):</label>
+                            <input type="number" id="input-last-service-km" class="form-control" placeholder="مثال: 140000">
                         </div>
-                        <button id="btn-calculate-status" class="btn btn-primary btn-block"><i class="fa-solid fa-chart-line"></i> تحليل حالة الصيانة</button>
+                        <button id="btn-calculate-status" class="btn btn-primary btn-block">تحليل حالة المحرك</button>
                     </div>
 
                     <div id="calc-results-display" class="calc-display hidden">
                         <div class="status-indicator" id="status-badge">
-                            <span class="status-title">حالة تغيير الزيت:</span>
-                            <span id="status-text" class="status-value">آمن</span>
+                            <span class="status-title">حالة الصيانة:</span>
+                            <span id="status-text" class="status-value">--</span>
                         </div>
                         <div class="calc-metrics">
-                            <div class="metric">
-                                <span class="metric-label">المسافة المقطوعة بالزيت الحالي</span>
-                                <span id="metric-driven" class="metric-val">5,000 KM</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-label">المسافة المتبقية الخدمة</span>
-                                <span id="metric-remaining" class="metric-val">5,000 KM</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-label">الصيانة القادمة عند العداد</span>
-                                <span id="metric-next" class="metric-val">90,000 KM</span>
-                            </div>
+                            <div class="metric"><span class="metric-label">المقطوع بالزيت الحالي</span><span id="metric-driven" class="metric-val">0 KM</span></div>
+                            <div class="metric"><span class="metric-label">المتبقي الصيانة</span><span id="metric-remaining" class="metric-val">0 KM</span></div>
+                            <div class="metric"><span class="metric-label">الصيانة القادمة عند</span><span id="metric-next" class="metric-val">0 KM</span></div>
                         </div>
                     </div>
                 </div>
@@ -231,45 +210,31 @@
 
             <div class="disclaimer-banner">
                 <i class="fa-solid fa-triangle-exclamation"></i>
-                <p><strong>تنويه قانوني وفني:</strong> سعات ومواصفات الزيوت قد تختلف بناءً على محرك المركبة، السوق الإقليمي، سنة الصنع، والتجهيزات التراكمية. تحقق دائماً من المواصفات النهائية باستخدام دليل مالك المركبة (Owner's Manual) أو توثيق الشركة المصنعة قبل إجراء عملية الصيانة.</p>
+                <p><strong>تنويه قانوني وفني:</strong> Specifications may vary by engine, production year, market, and vehicle configuration. Always verify the final service specification using the owner's manual or manufacturer documentation before performing any maintenance.</p>
             </div>
-
         </section>
 
         <section id="garage" class="card garage-section">
             <div class="card-header">
-                <h2><i class="fa-solid fa-warehouse"></i> كراجي الخاص (Garage & Service Logs)</h2>
-                <p>إدارة مركباتك المحفوظة، سجلات التغيير، والتنبيهات القادمة</p>
+                <h2><i class="fa-solid fa-warehouse"></i> كراج المركبات وسجلات الصيانة</h2>
             </div>
-
             <div id="garage-empty-state" class="empty-state">
                 <i class="fa-solid fa-car-burst"></i>
-                <p>لا توجد سيارات محفوظة في كراجك حالياً. قم باختيار سيارتك وأضفها للوصول السريع.</p>
+                <p>لا توجد سيارات محفوظة في كراجك حالياً.</p>
             </div>
-
-            <div id="garage-list" class="garage-grid">
-                </div>
+            <div id="garage-list" class="garage-grid"></div>
         </section>
 
-        <section id="about" class="card about-section">
+        <section id="admin" class="card admin-section">
             <div class="card-header">
-                <h2>عن منصة DASH AHD العالمية</h2>
+                <h2><i class="fa-solid fa-database"></i> لوحة الإدارة وتحديث قواعد البيانات (Database Importer)</h2>
+                <p>إدخال بيانات المركبات التاريخية أو استيراد ملفات JSON للمجموعات الضخمة</p>
             </div>
-            <div class="about-grid">
-                <div class="about-box">
-                    <i class="fa-solid fa-database"></i>
-                    <h4>قاعدة بيانات عالمية</h4>
-                    <p>تغطي المنصة جميع المصنعين من الأسواق الأمريكية، الأوروبية، الآسيوية، والصينية لتوفير الدعم الكامل لجميع فئات الهياكل والمحركات.</p>
-                </div>
-                <div class="about-box">
-                    <i class="fa-solid fa-microchip"></i>
-                    <h4>دقة تتبع المحركات</h4>
-                    <p>فصل دقيق بين المحركات التنفس الطبيعي والتوربو والهجين (Hybrid) والكهربائي لضمان سعة اللزوجة الدقيقة بالمليلتر.</p>
-                </div>
-                <div class="about-box">
-                    <i class="fa-solid fa-bell"></i>
-                    <h4>تنبيهات الصيانة</h4>
-                    <p>نظام ذكي لحساب المسافات المتبقية وإشعارك بمواعيد الصيانة الدورية لتفادي تلف أجزاء المحرك الداخلية.</p>
+            <div class="admin-grid">
+                <div class="form-group">
+                    <label>استيراد قاعدة البيانات (JSON Format):</label>
+                    <textarea id="json-import-input" class="form-control json-area" placeholder='ضع بيانات JSON للمركبات هنا...'></textarea>
+                    <button id="btn-import-json" class="btn btn-primary margin-top-sub"><i class="fa-solid fa-file-import"></i> معالجة واستيراد البيانات</button>
                 </div>
             </div>
         </section>
@@ -280,42 +245,11 @@
         <div class="container footer-content">
             <div class="footer-brand">
                 <span class="brand-dash">DASH</span> <span class="brand-ahd">AHD</span>
-                <p>المنصة العالمية الرائدة لمعلومات زيوت وصيانة السيارات.</p>
+                <p>المحرك العالمي لمعلومات صيانة وزيوت السيارات الكلاسيكية والحديثة (1900 - 2026).</p>
             </div>
-            <div class="footer-copy">
-                &copy; 2026 DASH AHD Inc. جميع الحقوق محفوظة.
-            </div>
+            <div class="footer-copy">&copy; 2026 DASH AHD Inc. All rights reserved.</div>
         </div>
     </footer>
-
-    <div id="service-modal" class="modal hidden">
-        <div class="modal-content card">
-            <div class="modal-header">
-                <h3><i class="fa-solid fa-file-pen"></i> تسجيل خدمة صيانة جديدة</h3>
-                <button id="btn-close-modal" class="close-btn">&times;</button>
-            </div>
-            <form id="service-log-form">
-                <input type="hidden" id="modal-vehicle-id">
-                <div class="form-group">
-                    <label>تاريخ الخدمة:</label>
-                    <input type="date" id="log-date" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>قراءة العداد (KM):</label>
-                    <input type="number" id="log-km" class="form-control" placeholder="مثال: 95000" required>
-                </div>
-                <div class="form-group">
-                    <label>علامة/ماركة الزيت المستخدم:</label>
-                    <input type="text" id="log-brand" class="form-control" placeholder="مثال: Mobil 1, Shell, Total" required>
-                </div>
-                <div class="form-group">
-                    <label>اللزوجة المستخدمة:</label>
-                    <input type="text" id="log-viscosity" class="form-control" placeholder="مثال: 5W-30" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">حفظ التقرير في السجل</button>
-            </form>
-        </div>
-    </div>
 
     <script src="app.js"></script>
 </body>
